@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Orders Report</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc); /* Cool gradient background */
+            margin: 0;
+            padding: 20px;
+            color: white; /* Change text color to white for better contrast */
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff; /* White color for the heading */
+            margin-bottom: 20px;
+            font-size: 2.5em; /* Increased font size */
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            animation: fadeIn 0.5s;
+            max-width: 800px;
+            margin: 0 auto; /* Center the container */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px; /* Adjust height */
+            margin: 20px 0;
+        }
+
+        .notes {
+            margin-top: 20px;
+            font-size: 1.1em;
+            line-height: 1.5;
+            background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+            padding: 15px;
+            border-radius: 8px; /* Rounded corners */
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #fff; /* White footer text */
+        }
+
+        .revenue {
+            font-size: 1.5em;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Monthly Orders Report</h1>
+        <div class="chart-container">
+            <canvas id="monthlyOrdersChart"></canvas>
+        </div>
+        
+        <div class="revenue">
+            <h2>Monthly Revenue</h2>
+            <p>₹2,50,000</p> <!-- Example revenue value -->
+        </div>
+
+        <div class="notes">
+            <p>According to the chart above, we have seen a significant increase in orders over the past few months. In particular, we gained:</p>
+            <ul>
+                <li><strong>January:</strong> 120 Orders</li>
+                <li><strong>February:</strong> 150 Orders</li>
+                <li><strong>March:</strong> 200 Orders</li>
+                <li><strong>April:</strong> 300 Orders</li>
+                <li><strong>May:</strong> 450 Orders</li>
+            </ul>
+            <p>This growth indicates a positive trend in customer engagement and satisfaction. We should analyze our marketing strategies to understand what led to this increase and how we can sustain it.</p>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Shopping Website Admin
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Monthly Orders Data
+        const monthlyOrdersData = [120, 150, 200, 300, 450]; // Order counts for each month
+        const ctx = document.getElementById('monthlyOrdersChart').getContext('2d');
+
+        const monthlyOrdersChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May'], // Month labels
+                datasets: [{
+                    label: 'Monthly Orders',
+                    data: monthlyOrdersData,
+                    borderColor: '#ffce56', // Bright color for the line
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)', // Soft background for the line area
+                    fill: true,
+                    tension: 0.4 // Smooth the line
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return `Orders: ${tooltipItem.raw}`; // Custom tooltip label
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Months',
+                            color: '#fff' // White x-axis title
+                        },
+                        ticks: {
+                            color: '#fff' // White x-axis ticks
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Number of Orders',
+                            color: '#fff' // White y-axis title
+                        },
+                        beginAtZero: true, // Start y-axis at 0
+                        ticks: {
+                            color: '#fff' // White y-axis ticks
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

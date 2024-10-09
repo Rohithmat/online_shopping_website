@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order - Shopping Website</title>
+    <style>
+       body {
+            margin: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            color: #333;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #00796b;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 26px;
+            color: #e0f2f1;
+        }
+
+        .header nav {
+            display: flex;
+        }
+
+        .header nav a {
+            color: #e0f2f1;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            background-color: #004d40;
+            color: #b2dfdb;
+            border-radius: 4px;
+        }
+
+        /* Order Styles */
+        .order {
+            padding: 80px 20px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .order h2 {
+            font-size: 32px;
+            color: #00796b;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive Media Queries */
+        @media (max-width: 768px) {
+            .order {
+                padding: 60px 15px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .header nav a {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .header nav a {
+                font-size: 12px;
+                padding: 6px;
+            }
+        }
+        /* Order Styles */
+        .order {
+            padding: 80px 20px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .order h2 {
+            font-size: 32px;
+            color: #00796b;
+            text-align: center;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .order-details, .order-summary {
+            margin: 20px 0;
+        }
+
+        .order-details h3, .order-summary h3 {
+            font-size: 24px;
+            color: #00796b;
+            margin-bottom: 15px;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .order-item {
+            display: flex;
+            align-items: center;
+            background-color: #f1f8e9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .order-item img {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            margin-right: 15px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .order-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .order-item-details h4 {
+            font-size: 20px;
+            color: #00796b;
+            margin: 0;
+        }
+
+        .order-item-details p {
+            font-size: 16px;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .order-summary {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .order-summary .total {
+            font-size: 24px;
+            color: #00796b;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .order-summary button {
+            background-color: #00796b;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .order-summary button:hover {
+            background-color: #004d40;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1>ShopSmart</h1>
+        </div>
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="cart.html">Cart</a>
+            <a href="order.html">Order</a>
+            <a href="aboutus.html">About Us</a>
+        </nav>
+    </header>
+
+    <div class="order">
+        <h2>Order Summary</h2>
+
+        <div class="order-details" id="order-details">
+            <h3>Order Details</h3>
+            <!-- Order items will be dynamically added here -->
+        </div>
+
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <div class="total" id="order-total">Total: $0.00</div>
+            <button>Place Order</button>
+        </div>
+    </div>
+
+    <script>
+       document.addEventListener('DOMContentLoaded', () => {
+    const orderDetails = document.getElementById('order-details');
+    const orderTotal = document.getElementById('order-total');
+
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+    let totalAmount = 0;
+
+    orders.forEach(order => {
+        const orderItem = document.createElement('div');
+        orderItem.classList.add('order-item');
+        orderItem.innerHTML = `
+            <img src="${order.image}" alt="Product Image">
+            <div class="order-item-details">
+                <h4>${order.title}</h4>
+                <p>Price: $${order.price.toFixed(2)}</p>
+                <p>Delivery Charge: $${order.deliveryCharge.toFixed(2)}</p>
+                <p>Total: $${order.totalAmount.toFixed(2)}</p>
+                <p>Estimated Delivery Date: ${order.deliveryDate}</p>
+            </div>
+        `;
+        orderDetails.appendChild(orderItem);
+        totalAmount += order.totalAmount;
+    });
+
+    orderTotal.textContent = `Total: $${totalAmount.toFixed(2)}`;
+
+    // Clear orders from localStorage after displaying
+    localStorage.removeItem('orders');
+});
+
+    </script>
+</body>
+</html>

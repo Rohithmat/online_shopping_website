@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Sales Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #007bff, #00c6ff); /* Cool gradient background */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333; /* Dark text for better contrast */
+        }
+
+        h1 {
+            margin: 20px 0;
+        }
+
+        .container {
+            width: 90%; /* Wider container */
+            margin: 20px 0; /* Margin between containers */
+            text-align: center;
+        }
+
+        .category {
+            background: white; /* White background for category boxes */
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+            padding: 15px;
+            margin: 15px 0; /* Margin for spacing */
+            transition: transform 0.3s, box-shadow 0.3s; /* Smooth transform and shadow on hover */
+        }
+
+        .category:hover {
+            transform: scale(1.05); /* Scale slightly on hover */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
+        }
+
+        .chart-container {
+            width: 100%; /* Full width for the chart */
+            max-width: 700px; /* Max width for charts */
+            margin: 20px auto; /* Center and margin for spacing */
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #777; /* Lighter color for footer */
+        }
+    </style>
+</head>
+<body>
+    <h1>Product Sales Dashboard</h1>
+
+    <div class="container">
+        <div class="category">
+            <h2>Category: Electronics</h2>
+            <div class="chart-container">
+                <canvas id="electronicsChart" width="700" height="350"></canvas>
+            </div>
+            <p>Featured Products: Smartwatch, Bluetooth Speaker, Drone</p>
+        </div>
+
+        <div class="category">
+            <h2>Category: Clothing</h2>
+            <div class="chart-container">
+                <canvas id="clothingChart" width="700" height="350"></canvas>
+            </div>
+            <p>Featured Products: T-Shirt, Jeans, Hoodie</p>
+        </div>
+
+        <div class="category">
+            <h2>Category: Home Appliances</h2>
+            <div class="chart-container">
+                <canvas id="homeAppliancesChart" width="700" height="350"></canvas>
+            </div>
+            <p>Featured Products: Microwave, Toaster, Vacuum Cleaner</p>
+        </div>
+
+        <div class="category">
+            <h2>Category: Furniture</h2>
+            <div class="chart-container">
+                <canvas id="furnitureChart" width="700" height="350"></canvas>
+            </div>
+            <p>Featured Products: Sofa, Dining Table, Bookshelf</p>
+        </div>
+
+        <div class="category">
+            <h2>Category: Toys</h2>
+            <div class="chart-container">
+                <canvas id="toysChart" width="700" height="350"></canvas>
+            </div>
+            <p>Featured Products: LEGO Set, Action Figure, Doll</p>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Shopping Website
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Electronics Sales Data
+        const electronicsCtx = document.getElementById('electronicsChart').getContext('2d');
+        const electronicsChart = new Chart(electronicsCtx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [
+                    {
+                        label: 'Smartwatch',
+                        data: [40, 60, 80, 100],
+                        borderColor: '#36a2eb',
+                        fill: false,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Bluetooth Speaker',
+                        data: [20, 30, 50, 70],
+                        borderColor: '#ff6384',
+                        fill: false,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Drone',
+                        data: [10, 25, 40, 60],
+                        borderColor: '#ffce56',
+                        fill: false,
+                        tension: 0.1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Weeks'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Units Sold'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Clothing Sales Data
+        const clothingCtx = document.getElementById('clothingChart').getContext('2d');
+        const clothingChart = new Chart(clothingCtx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [
+                    {
+                        label: 'T-Shirt',
+                        data: [15, 25, 40, 55],
+                        borderColor: '#36a2eb',
+                        fill: false,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Jeans',
+                        data: [10, 15, 20, 30],
+                        borderColor: '#ff6384',
+                        fill: false,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Hoodie',
+                        data: [5, 10, 15, 20],
+                        borderColor: '#ffce56',
+                        fill: false,
+                        tension: 0.1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Weeks'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Units Sold'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Home Appliances Sales Data
+        const homeAppliancesCtx = document.getElementById('homeAppliancesChart').getContext('2d');
+        const homeAppliancesChart = new Chart(homeAppliancesCtx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [
+                    {
+                        label: 'Microwave',
+                        data: [20, 30, 40, 50],
+                        borderColor: '#36a2eb',
+                        fill: false,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Toaster',
+                        data: [10, 20, 25, 35],
+                        borderColor: '#ff6384',
+                        fill: false,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Vacuum Cleaner',
+                        data: [5, 15, 20, 30],
+                        borderColor: '#ffce56',
+                        fill: false,
+                        tension: 0.1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Weeks'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Units Sold'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Furniture Sales Data
+        const furnitureCtx = document.getElementById('furnitureChart').getContext('2d');
+        const furnitureChart = new Chart(furnitureCtx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [
+                    {
+                        label: 'Sofa',
+                        data: [10, 15, 20, 30],
+                        borderColor: '#36a2eb',
+                        fill: false,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Dining Table',
+                        data: [5, 10, 15, 20],
+                        borderColor: '#ff6384',
+                        fill: false,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Bookshelf',
+                        data: [3, 6, 9, 12],
+                        borderColor: '#ffce56',
+                        fill: false,
+                        tension: 0.1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Weeks'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Units Sold'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Toys Sales Data
+        const toysCtx = document.getElementById('toysChart').getContext('2d');
+        const toysChart = new Chart(toysCtx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [
+                    {
+                        label: 'LEGO Set',
+                        data: [25, 35, 50, 70],
+                        borderColor: '#36a2eb',
+                        fill: false,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Action Figure',
+                        data: [15, 20, 25, 30],
+                        borderColor: '#ff6384',
+                        fill: false,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Doll',
+                        data: [5, 10, 15, 20],
+                        borderColor: '#ffce56',
+                        fill: false,
+                        tension: 0.1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Weeks'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Units Sold'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

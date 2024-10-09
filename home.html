@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Shopping Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 26px;
+            color: #f7c04a;
+        }
+
+        .header nav {
+            display: flex;
+        }
+
+        .header nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            background-color: #333;
+            color: #f7c04a;
+            border-radius: 4px;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            padding: 100px 20px 20px; /* Added padding-top to accommodate fixed header */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-section {
+            margin-bottom: 40px;
+        }
+
+        .category-section h2 {
+            font-size: 24px;
+            color: #00796b;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #00796b;
+            padding-bottom: 10px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden; /* Ensure content does not overflow */
+            position: relative; /* To position cart button absolutely */
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3 / 4; /* Ensure 3:4 aspect ratio */
+            border-radius: 4px;
+            margin-bottom: 10px;
+            object-fit: cover;
+        }
+
+        .product h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .product p {
+            margin: 10px 0;
+            color: #666;
+        }
+
+        .product .price {
+            font-size: 20px;
+            color: #00796b;
+            font-weight: bold;
+        }
+
+        .cart-button {
+            position: absolute;
+            bottom: 10px; /* Position from the bottom */
+            right: 10px; /* Position from the right */
+            font-size: 1.5em; /* Size of the icon */
+            color: #333; /* Color of the icon */
+            text-decoration: none; /* Remove underline */
+            transition: color 0.3s; /* Smooth transition for color change */
+        }
+
+        .cart-button:hover {
+            color: #007bff; /* Change color on hover */
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .category-section h2, .product {
+            animation: fadeIn 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1>ShopSmart</h1>
+        </div>
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="cart.html">Cart</a>
+            <a href="order.html">Order</a>
+            <a href="aboutus.html">About Us</a>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <!-- Electronics Category -->
+        <div class="category-section">
+            <h2>Electronics</h2>
+            <div class="product-grid">
+<!-- Product 1 -->
+<div class="product" data-title="vivo" data-price="199" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSyLC3s5XchlI4LqKUgbrVyouuuRNIUNTUhg&s">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSyLC3s5XchlI4LqKUgbrVyouuuRNIUNTUhg&s" alt="Smartwatch">
+        <h3>vivo</h3>
+        <p>Stylish smartwatch with various functionalities.</p>
+        <p class="price">$199</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 2 -->
+<div class="product" data-title="Smartwatch" data-price="199" data-image="https://www.corseca.in/cdn/shop/files/6_95587271-5b56-47e9-bb0f-0a1f8263dc79.jpg?v=1700823367">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://www.corseca.in/cdn/shop/files/6_95587271-5b56-47e9-bb0f-0a1f8263dc79.jpg?v=1700823367" alt="Smartwatch">
+        <h3>Smartwatch</h3>
+        <p>Stylish smartwatch with various functionalities.</p>
+        <p class="price">$199</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 3 -->
+<div class="product" data-title="Bluetooth Speaker" data-price="79" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqegym9Ussm6DP_TUZ15VBgZICnPJMTLVI7w&s">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqegym9Ussm6DP_TUZ15VBgZICnPJMTLVI7w&s" alt="Bluetooth Speaker">
+        <h3>Bluetooth Speaker</h3>
+        <p>Portable Bluetooth speaker with great sound quality.</p>
+        <p class="price">$79</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 4 -->
+<div class="product" data-title="Headphones" data-price="129" data-image="https://plus.unsplash.com/premium_photo-1678099940967-73fe30680949?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aGVhZHBob25lc3xlbnwwfHwwfHx8MA%3D%3D">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://plus.unsplash.com/premium_photo-1678099940967-73fe30680949?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aGVhZHBob25lc3xlbnwwfHwwfHx8MA%3D%3D" alt="Headphones">
+        <h3>Headphones</h3>
+        <p>Comfortable headphones with noise-cancelling features.</p>
+        <p class="price">$129</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 5 -->
+<div class="product" data-title="Tablet" data-price="299" data-image="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202204/ip14.JPG?VersionId=tB4NEzKS7rCCrPTUq3px3zXftI.iQtp3&size=690:388">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202204/ip14.JPG?VersionId=tB4NEzKS7rCCrPTUq3px3zXftI.iQtp3&size=690:388" alt="Tablet">
+        <h3>Tablet</h3>
+        <p>High-resolution tablet with versatile functions.</p>
+        <p class="price">$299</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 6 -->
+<div class="product" data-title="Laptop" data-price="899" data-image="https://burst.shopifycdn.com/photos/portrait-of-illuminated-laptop.jpg?width=1000&format=pjpg&exif=0&iptc=0">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://burst.shopifycdn.com/photos/portrait-of-illuminated-laptop.jpg?width=1000&format=pjpg&exif=0&iptc=0" alt="Laptop">
+        <h3>Laptop</h3>
+        <p>Powerful laptop for work and play.</p>
+        <p class="price">$899</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 7 -->
+<div class="product" data-title="Camera" data-price="499" data-image="https://eavf3cou74b.exactdn.com/wp-content/uploads/2023/06/28103020/Best-Cameras-for-Professional-Photography-6.jpg?strip=all&lossy=1&ssl=1">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://eavf3cou74b.exactdn.com/wp-content/uploads/2023/06/28103020/Best-Cameras-for-Professional-Photography-6.jpg?strip=all&lossy=1&ssl=1" alt="Camera">
+        <h3>Camera</h3>
+        <p>High-quality camera for capturing memories.</p>
+        <p class="price">$499</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 8 -->
+<div class="product" data-title="Projector" data-price="349" data-image="https://images.unsplash.com/photo-1528395874238-34ebe249b3f2?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvamVjdG9yfGVufDB8fDB8fHww">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://images.unsplash.com/photo-1528395874238-34ebe249b3f2?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvamVjdG9yfGVufDB8fDB8fHww" alt="Projector">
+        <h3>Projector</h3>
+        <p>Compact projector for presentations and movies.</p>
+        <p class="price">$349</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+</div>
+</div>
+
+        <!-- Fashion Category -->
+        <div class="category-section">
+            <h2>Fashion</h2>
+            <div class="product-grid">
+<!-- Product 1 -->
+<div class="product" data-title="Leather Jacket" data-price="299" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb7p6s8bxqux9uFDh0v8jLr1IKtBHcPyQ9UQ&s">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb7p6s8bxqux9uFDh0v8jLr1IKtBHcPyQ9UQ&s" alt="Leather Jacket">
+        <h3>Leather Jacket</h3>
+        <p>Trendy leather jacket for any occasion.</p>
+        <p class="price">$299</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 2 -->
+<div class="product" data-title="Sunglasses" data-price="89" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ18vySOMV1t_ED2IEt7SxiqbeA577DPLpROQ&s">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ18vySOMV1t_ED2IEt7SxiqbeA577DPLpROQ&s" alt="Sunglasses">
+        <h3>Sunglasses</h3>
+        <p>Stylish sunglasses to protect your eyes from the sun.</p>
+        <p class="price">$89</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 3 -->
+<div class="product" data-title="Watch" data-price="149" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6kSWehrOzKn5ea67-S22b3VElTzSOgxsmGQ&s">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6kSWehrOzKn5ea67-S22b3VElTzSOgxsmGQ&s" alt="Watch">
+        <h3>Watch</h3>
+        <p>Elegant watch with a classic design.</p>
+        <p class="price">$149</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 4 -->
+<div class="product" data-title="Dress" data-price="129" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRASTiRPwhPClmKhTn6wexLNCZNMR9B_XQyCA&s">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRASTiRPwhPClmKhTn6wexLNCZNMR9B_XQyCA&s" alt="Dress">
+        <h3>Dress</h3>
+        <p>Beautiful dress perfect for any event.</p>
+        <p class="price">$129</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+           
+              <!-- Product 5 -->
+<div class="product" data-title="Shoes" data-price="99" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkkwm7yrZOupea5pHi8w5mUckk9yyzecx5f_RxNNCRYbYx3KTs4hqoho4Z0D9JJCTZnvw&usqp=CAU">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkkwm7yrZOupea5pHi8w5mUckk9yyzecx5f_RxNNCRYbYx3KTs4hqoho4Z0D9JJCTZnvw&usqp=CAU" alt="Shoes">
+        <h3>Shoes</h3>
+        <p>Comfortable shoes for everyday wear.</p>
+        <p class="price">$99</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 6 -->
+<div class="product" data-title="Handbag" data-price="179" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRobjBif_BFwoGAu0gWlz4I9Lb_SQy-kHPhPA&s">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRobjBif_BFwoGAu0gWlz4I9Lb_SQy-kHPhPA&s" alt="Handbag">
+        <h3>Handbag</h3>
+        <p>Stylish handbag with ample space.</p>
+        <p class="price">$179</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 7 -->
+<div class="product" data-title="Sneakers" data-price="119" data-image="https://img.freepik.com/free-photo/close-up-person-wearing-futuristic-sneakers_23-2151005704.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1720483200&semt=ais_hybrid">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://img.freepik.com/free-photo/close-up-person-wearing-futuristic-sneakers_23-2151005704.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1720483200&semt=ais_hybrid" alt="Sneakers">
+        <h3>Sneakers</h3>
+        <p>Trendy sneakers for a casual look.</p>
+        <p class="price">$119</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 8 -->
+<div class="product" data-title="Hat" data-price="49" data-image="https://img.freepik.com/premium-photo/beach-hat-hd-8k-wallpaper-stock-photographic-image_915071-56205.jpg">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://img.freepik.com/premium-photo/beach-hat-hd-8k-wallpaper-stock-photographic-image_915071-56205.jpg" alt="Hat">
+        <h3>Hat</h3>
+        <p>Fashionable hat to complete your outfit.</p>
+        <p class="price">$49</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+            </div>
+        </div>
+
+        <!-- Home Goods Category -->
+        <div class="category-section">
+            <h2>Home Goods</h2>
+            <div class="product-grid">
+       <!-- Product 1 -->
+<div class="product" data-title="Vase" data-price="89" data-image="https://img.freepik.com/premium-photo/flowers-vase-hd-8k-wallpaper-stock-photographic-image_853645-51795.jpg">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://img.freepik.com/premium-photo/flowers-vase-hd-8k-wallpaper-stock-photographic-image_853645-51795.jpg" alt="Vase">
+        <h3>Vase</h3>
+        <p>Elegant vase for your living room.</p>
+        <p class="price">$49</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 2 -->
+<div class="product" data-title="Lamp" data-price="199" data-image="https://m.media-amazon.com/images/I/71jIfDWFmEL._AC_UF1000,1000_QL80_.jpg">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://m.media-amazon.com/images/I/71jIfDWFmEL._AC_UF1000,1000_QL80_.jpg" alt="Lamp">
+        <h3>Lamp</h3>
+        <p>Stylish lamp to brighten up your space.</p>
+        <p class="price">$89</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 3 -->
+<div class="product" data-title="Throw Pillow" data-price="29" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTP8pAEhQMQE96LsgQc5ncd_lrgOWfY6LDH9w&s">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTP8pAEhQMQE96LsgQc5ncd_lrgOWfY6LDH9w&s" alt="Throw Pillow">
+        <h3>Throw Pillow</h3>
+        <p>Comfortable throw pillow for your sofa.</p>
+        <p class="price">$29</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 4 -->
+<div class="product" data-title="Blanket" data-price="59" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlQq2GEAIyBqLt_DIeuHEBUdXXvwy380Chtg&s">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlQq2GEAIyBqLt_DIeuHEBUdXXvwy380Chtg&s" alt="Blanket">
+        <h3>Blanket</h3>
+        <p>Soft blanket for cozy nights.</p>
+        <p class="price">$59</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 5 -->
+<div class="product" data-title="Coffee Table" data-price="199" data-image="https://m.media-amazon.com/images/I/91g1tut9bkL._AC_UF894,1000_QL80_.jpg">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://m.media-amazon.com/images/I/91g1tut9bkL._AC_UF894,1000_QL80_.jpg" alt="Coffee Table">
+        <h3>Coffee Table</h3>
+        <p>Modern coffee table for your living room.</p>
+        <p class="price">$199</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 6 -->
+<div class="product" data-title="Area Rug" data-price="129" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhChmzhssc0xlEyijbHoi9WVW1ja3NGqgVhA&s">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhChmzhssc0xlEyijbHoi9WVW1ja3NGqgVhA&s" alt="Area Rug">
+        <h3>Area Rug</h3>
+        <p>Soft and stylish area rug for any room.</p>
+        <p class="price">$129</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+              <!-- Product 7 -->
+<div class="product" data-title="Wall Art" data-price="89" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0GU1Y0mUpJ_CR69Dl8l9xPTGU5oyDDmWGmQ&s">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0GU1Y0mUpJ_CR69Dl8l9xPTGU5oyDDmWGmQ&s" alt="Wall Art">
+        <h3>Wall Art</h3>
+        <p>Beautiful wall art to enhance your decor.</p>
+        <p class="price">$89</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 8 -->
+<div class="product" data-title="Kitchen Utensils" data-price="49" data-image="https://img.freepik.com/premium-photo/kitchen-utensils-hd-8k-wallpaper-stock-photographic_1064748-40050.jpg">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://img.freepik.com/premium-photo/kitchen-utensils-hd-8k-wallpaper-stock-photographic_1064748-40050.jpg" alt="Kitchen Utensils">
+        <h3>Kitchen Utensils</h3>
+        <p>Essential utensils for your kitchen.</p>
+        <p class="price">$49</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+            </div>
+        </div>
+
+        <!-- Toys Category -->
+        <div class="category-section">
+            <h2>Toys</h2>
+            <div class="product-grid">
+                <!-- Product 1 -->
+<div class="product" data-title="LEGO Set" data-price="79" data-image="https://preview.redd.it/greetings-from-my-lego-city-v0-7oel3dxrr3eb1.jpg?width=640&crop=smart&auto=webp&s=b62a4371e84344fc968e230c8fcc8747ff156134">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://preview.redd.it/greetings-from-my-lego-city-v0-7oel3dxrr3eb1.jpg?width=640&crop=smart&auto=webp&s=b62a4371e84344fc968e230c8fcc8747ff156134" alt="LEGO Set">
+        <h3>LEGO Set</h3>
+        <p>Fun and creative LEGO building set.</p>
+        <p class="price">$79</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 2 -->
+<div class="product" data-title="Doll" data-price="39" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGKZut3Zcdzye4fKcHqKuUIB1HYr1Mo2aTIQ&s">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGKZut3Zcdzye4fKcHqKuUIB1HYr1Mo2aTIQ&s" alt="Doll">
+        <h3>Barby Doll</h3>
+        <p>Cuddly doll for hours of playtime.</p>
+        <p class="price">$39</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 3 -->
+<div class="product" data-title="Action Figure" data-price="49" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR19FYDrjNpzneQysfU_J0Ei6o7mntSNdOPEQ&s">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR19FYDrjNpzneQysfU_J0Ei6o7mntSNdOPEQ&s" alt="Action Figure">
+        <h3>Action Figure</h3>
+        <p>Detailed action figure for collectors.</p>
+        <p class="price">$49</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 4 -->
+<div class="product" data-title="Toy Car" data-price="29" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjK9wi15Bv_K19DAUayLrvqYo-JohVdWXxRw&s">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjK9wi15Bv_K19DAUayLrvqYo-JohVdWXxRw&s" alt="Toy Car">
+        <h3>Toy Car</h3>
+        <p>Classic toy car for little racers.</p>
+        <p class="price">$29</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 5 -->
+<div class="product" data-title="Stuffed Animal" data-price="35" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlPId6MpJlS_gLbWcl97Ddpa6g-u1f0ivaqg&s">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlPId6MpJlS_gLbWcl97Ddpa6g-u1f0ivaqg&s" alt="Stuffed Animal">
+        <h3>Stuffed Animal</h3>
+        <p>Soft and huggable stuffed animal toy.</p>
+        <p class="price">$35</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 6 -->
+<div class="product" data-title="Puzzle" data-price="25" data-image="https://render.fineartamerica.com/images/rendered/default/flat/puzzle/images/artworkimages/medium/3/c-2020-f3-neowise-2-robert-fawcett.jpg?&targetx=0&targety=-61&imagewidth=750&imageheight=1123&modelwidth=750&modelheight=1000&backgroundcolor=1D2431&orientation=1&producttype=puzzle-18-24&brightness=114&v=6">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://render.fineartamerica.com/images/rendered/default/flat/puzzle/images/artworkimages/medium/3/c-2020-f3-neowise-2-robert-fawcett.jpg?&targetx=0&targety=-61&imagewidth=750&imageheight=1123&modelwidth=750&modelheight=1000&backgroundcolor=1D2431&orientation=1&producttype=puzzle-18-24&brightness=114&v=6" alt="Puzzle">
+        <h3>Puzzle</h3>
+        <p>Challenging puzzle for hours of fun.</p>
+        <p class="price">$25</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 7 -->
+<div class="product" data-title="Board Game" data-price="45" data-image="https://wallpapers.com/images/hd/a-grand-display-of-classic-board-games-zy33sczjk086euci.jpg">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://wallpapers.com/images/hd/a-grand-display-of-classic-board-games-zy33sczjk086euci.jpg" alt="Board Game">
+        <h3>Board Game</h3>
+        <p>Enjoyable board game for family nights.</p>
+        <p class="price">$45</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+<!-- Product 8 -->
+<div class="product" data-title="Teddy Bear" data-price="30" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7M2hcQonnOcyiOcjDpZhlrvkeWmLVW3AYTA&s">
+    <a href="javascript:void(0);" onclick="setProductDetails(event, this);">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7M2hcQonnOcyiOcjDpZhlrvkeWmLVW3AYTA&s" alt="Teddy Bear">
+        <h3>Teddy Bear</h3>
+        <p>Classic teddy bear for comfort and play.</p>
+        <p class="price">$30</p>
+    </a>
+    <a href="javascript:void(0);" class="cart-button" onclick="redirectToCart(event)">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </a>
+</div>
+
+            </div>
+        </div>
+    </div>
+   
+    <script>
+        function setProductDetails(element) {
+            // Get product details from the clicked element
+            const productTitle = element.dataset.title;
+            const productPrice = element.dataset.price;
+            const productImage = element.dataset.image;
+    
+            // Store product details in localStorage
+            const productDetails = {
+                title: productTitle,
+                price: productPrice,
+                image: productImage,
+            };
+            localStorage.setItem('productDetails', JSON.stringify(productDetails));
+        }
+    
+        function redirectToProduct(event) {
+            const productElement = event.currentTarget.closest('.product'); // Ensure we're getting the correct product
+            setProductDetails(productElement); // Set product details
+            window.location.href = 'product.html'; // Redirect to product page
+        }
+    
+        function redirectToCart(event) {
+            event.stopPropagation(); // Prevents the click event from bubbling up
+            const productElement = event.currentTarget.closest('.product');
+            setProductDetails(productElement); // Set product details
+            window.location.href = 'cart.html'; // Redirect to cart page
+        }
+    
+        // Add event listener for product click
+        document.querySelectorAll('.product a').forEach(link => {
+            link.addEventListener('click', function(event) {
+                if (this.classList.contains('cart-button')) {
+                    redirectToCart(event);
+                } else {
+                    redirectToProduct(event);
+                }
+            });
+        });
+    </script>
+    
+    
+    
+    
+
+    <footer>
+        <p>&copy; 2024 ShopSmart. All rights reserved.</p>
+    </footer>
+</body>
+</html>

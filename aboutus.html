@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Shopping Website</title>
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #f0f4f8 0%, #c9d6e3 100%);
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .header nav {
+            display: flex;
+        }
+
+        .header nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            background-color: #333;
+            color: #f7c04a;
+            border-radius: 4px;
+        }
+
+        /* About Us Page Styles */
+        .about-us {
+            padding: 100px 20px 20px; /* Added padding-top to accommodate fixed header */
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .about-content,
+        .info-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            flex: 1;
+        }
+
+        .about-content {
+            max-width: 600px;
+        }
+
+        .about-content h2 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .about-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .info-container h3 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #009688;
+        }
+
+        .info-container p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .reviews {
+            margin-top: 20px;
+        }
+
+        .review {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+
+        .review p {
+            margin: 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .review .author {
+            font-weight: bold;
+            color: #009688;
+        }
+
+        .review .rating {
+            color: #ff9800;
+            font-size: 16px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1>ShopSmart</h1>
+        </div>
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="cart.html">Cart</a>
+            <a href="order.html">Order</a>
+            <a href="aboutus.html">About Us</a>
+        </nav>
+    </header>
+
+    <div class="about-us">
+        <div class="about-content">
+            <h2>About Us</h2>
+            <p>Welcome to ShopSmart, a leader in the online retail space, known for delivering top-notch products across electronics, fashion, and home goods. Based in Tamil Nadu, India, we are committed to providing high-quality products and exceptional service to our customers worldwide.</p>
+            <p>Our journey began with a passion for making online shopping accessible and enjoyable for everyone. We have grown rapidly, thanks to our dedicated team and loyal customers, and continue to innovate to meet your needs.</p>
+            <p>Our goal is to create a seamless shopping experience with a diverse product range, competitive prices, and excellent customer service. Explore our website to discover the best deals and latest trends.</p>
+        </div>
+
+        <div class="info-container">
+            <h3>Achievements</h3>
+            <p>Since our inception, ShopSmart has achieved remarkable milestones, including:</p>
+            <ul>
+                <li>Top 10 E-commerce Sites in India</li>
+                <li>Over 1 Million Satisfied Customers</li>
+                <li>Award for Best Online Shopping Experience 2023</li>
+            </ul>
+
+            <h3>Net Worth</h3>
+            <p>As of 2024, ShopSmart has an estimated net worth of $50 million, reflecting our strong market position and ongoing growth.</p>
+
+            <h3>User Reviews</h3>
+            <div class="reviews">
+                <div class="review">
+                    <p class="author">Priya S.</p>
+                    <p class="rating">★★★★★</p>
+                    <p>"ShopSmart has revolutionized my online shopping experience. Great selection, fast shipping, and excellent customer service!"</p>
+                </div>
+                <div class="review">
+                    <p class="author">Ravi K.</p>
+                    <p class="rating">★★★★☆</p>
+                    <p>"I love the variety of products available on ShopSmart. The prices are competitive, and the quality is always top-notch."</p>
+                </div>
+                <div class="review">
+                    <p class="author">Anjali R.</p>
+                    <p class="rating">★★★★★</p>
+                    <p>"Exceptional shopping experience! The website is easy to navigate, and my orders always arrive on time."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

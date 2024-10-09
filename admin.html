@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc); /* Cool gradient background */
+            margin: 0;
+            display: flex;
+            position: relative;
+            color: white; /* Change text color to white for better contrast */
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 200px;
+            background-color: #0056b3; /* Darker sidebar color */
+            color: white;
+            padding: 20px;
+            position: fixed;
+            height: 100%;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+
+        .sidebar button {
+            width: 100%;
+            background-color: transparent;
+            border: none;
+            color: white;
+            padding: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 220px; /* Sidebar width + padding */
+            padding: 20px;
+            margin-right: 20px; /* Add space on the right */
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center align */
+        }
+
+        /* Container Styles */
+        .container {
+            background: rgba(230, 230, 230, 0.9); /* Ash color with slight transparency */
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow for elevation */
+            padding: 30px; /* Increased padding */
+            animation: fadeIn 0.5s; /* Animation for containers */
+            width: 100%; /* Make it responsive */
+            max-width: 850px; /* Increased max width */
+            text-align: center; /* Center text */
+            margin-bottom: 30px; /* Increased margin */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff; /* White color for the heading */
+        }
+
+        .statistics {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px; /* Increased spacing */
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow for elevation */
+            position: relative; /* For rubber band effect */
+            overflow: hidden;
+            height: 160px; /* Increased height */
+            flex: 1;
+            color: white; /* Text color */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .stat-card h3 {
+            margin: 0;
+        }
+
+        /* Colors for the statistics containers */
+        .weekly-orders {
+            background: linear-gradient(135deg, #ff6f61, #de5d6b); /* Attractive gradient */
+        }
+
+        .monthly-orders {
+            background: linear-gradient(135deg, #6f61ff, #5d6bde); /* Attractive gradient */
+        }
+
+        /* Background GIF for Festival Orders */
+        .festival-orders {
+            background: url('https://i.pinimg.com/originals/27/dc/16/27dc16095583921ee36a2ea0fb5f3090.gif') no-repeat center top;
+            background-size: cover; /* Cover the entire container */
+            position: relative; /* Allow for absolute positioning of text */
+        }
+
+        /* Rubber Band Animation */
+        @keyframes rubberBand {
+            0%, 100% { transform: scale(1); }
+            30% { transform: scale(1.1); }
+            50% { transform: scale(0.9); }
+            70% { transform: scale(1.05); }
+        }
+
+        .stat-card:hover {
+            animation: rubberBand 0.5s; /* Apply rubber band effect */
+        }
+
+        /* Chart Styles */
+        .chart-container {
+            width: 100%;
+            max-width: 850px; /* Increased max width */
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #fff; /* White footer text */
+        }
+
+        /* Logout Button */
+        .logout-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #dc3545; /* Logout button color */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 1000; /* Ensures it's above other content */
+        }
+
+        .logout-button:hover {
+            background-color: #c82333; /* Darker red on hover */
+        }
+
+        /* Adjusted Pie Chart */
+        #productChart {
+            width: 320px; /* Adjust width */
+            height: 320px; /* Adjust height */
+            margin-left: 20px; /* Add margin */
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <button onclick="location.href='home.html'">Dashboard</button>
+        <a href="orders.html" style="text-decoration: none;">
+            <button>Orders</button>
+        </a>
+        <a href="products.html" style="text-decoration: none;">
+            <button>Products</button> <!-- Redirects to products.html -->
+        </a>
+        <a href="reviews.html" style="text-decoration: none;">
+        <button>Reviews</button>
+    </div>
+
+    <div class="main-content">
+        <h1>Admin Dashboard</h1>
+
+        <div class="statistics">
+            <div class="stat-card weekly-orders">
+                <h3>Weekly Orders</h3>
+                <p>Revenue: ₹2,500</p> <!-- Random high value -->
+            </div>
+            <div class="stat-card monthly-orders">
+                <h3>Monthly Orders</h3>
+                <p>Revenue: ₹10,000</p> <!-- Random high value -->
+            </div>
+            <div class="stat-card festival-orders">
+                <h3>Festival Orders</h3>
+                <p>Revenue: ₹5,000</p> <!-- Random high value -->
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="container" style="flex: 1; margin-right: 20px;">
+                <h2>Viewers and Orders Statistics</h2>
+                <canvas id="combinedChart" width="400" height="200"></canvas>
+            </div>
+            <div class="container" style="flex: 1;">
+                <h2>Highly Sold Products</h2>
+                <canvas id="productChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <a href="login.html" style="text-decoration: none;">
+    <button class="logout-button">Logout</button>
+
+    <footer>
+        &copy; 2024 Shopping Website Admin
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Combined Line Chart for Viewers and Orders
+        const ctxCombined = document.getElementById('combinedChart').getContext('2d');
+        const combinedChart = new Chart(ctxCombined, {
+            type: 'line',
+            data: {
+                labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'],
+                datasets: [{
+                    label: 'Viewers',
+                    data: [300, 400, 500, 700, 800], // Random viewer numbers
+                    borderColor: '#36a2eb',
+                    fill: false,
+                    tension: 0.1
+                }, {
+                    label: 'Orders',
+                    data: [50, 60, 80, 120, 150], // Random order numbers
+                    borderColor: '#ff6384',
+                    fill: false,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Days'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Count'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Product Pie Chart
+        const ctxProduct = document.getElementById('productChart').getContext('2d');
+        const productChart = new Chart(ctxProduct, {
+            type: 'pie',
+            data: {
+                labels: ['lamp', ' shoes', ' mobiles'],
+                datasets: [{
+                    label: 'Product Sales',
+                    data: [300, 50, 100], // Sample data
+                    backgroundColor: ['#ff6384', '#36a2eb', '#ffce56'],
+                    hoverOffset: 4
+                }]
+            }
+        });
+    </script>
+</body>
+</html>

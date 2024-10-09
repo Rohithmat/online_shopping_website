@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product - Shopping Website</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            color: #333;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background-color: #00796b;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 26px;
+            color: #e0f2f1;
+        }
+
+        .header nav {
+            display: flex;
+        }
+
+        .header nav a {
+            color: #e0f2f1;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            background-color: #004d40;
+            color: #b2dfdb;
+            border-radius: 4px;
+        }
+
+        .main-content {
+            padding: 80px 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-container {
+            display: flex;
+            align-items: flex-start;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 20px;
+        }
+
+        .product-container .image {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .product-container .image img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3 / 4; /* Set the aspect ratio to 3:4 */
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .product-container .details {
+            flex: 2;
+        }
+
+        .product-container h2 {
+            font-size: 28px;
+            color: #00796b;
+            margin-bottom: 10px;
+        }
+
+        .product-container p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .product-container .price {
+            font-size: 24px;
+            color: #00796b;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .product-container .delivery-date {
+            font-size: 16px;
+            color: #00796b;
+            margin-bottom: 20px;
+        }
+
+        .product-container .buy-button {
+            font-size: 18px;
+            color: #fff;
+            background-color: #00796b;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-container .buy-button:hover {
+            background-color: #004d40;
+        }
+
+        .back-link {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #00796b;
+            text-decoration: none;
+            border: 1px solid #00796b;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: #00796b;
+            color: #fff;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            color: #00796b;
+            margin: 0;
+        }
+
+        .modal-body {
+            margin: 20px 0;
+        }
+
+        .modal-body p {
+            margin: 10px 0;
+        }
+        .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+.modal-header {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.modal-title {
+    margin: 0;
+}
+
+.payment-options {
+    margin-top: 10px;
+}
+
+.payment-options label {
+    display: block;
+    margin: 10px 0;
+    font-size: 16px; /* Increased font size for readability */
+}
+
+.modal-close {
+    cursor: pointer;
+    float: right;
+    font-size: 20px;
+    color: #aaa;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .modal-footer button {
+            background-color: #00796b;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-footer button:hover {
+            background-color: #004d40;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #00796b;
+        }
+        .payment-field {
+    margin-top: 15px;
+}
+
+.payment-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.payment-field input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1>ShopSmart</h1>
+        </div>
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="cart.html">Cart</a>
+            <a href="order.html">Order</a>
+            <a href="aboutus.html">About Us</a>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <div class="product-container">
+            <div class="image">
+                <img id="product-image" src="https://via.placeholder.com/300x400" alt="Product Image">
+            </div>
+            <div class="details">
+                <h2 id="product-title">Product Name</h2>
+                <p id="product-description">Product description goes here. Provide detailed information about the product including its features, benefits, and any other relevant details.</p>
+                <p class="price" id="product-price">$299.99</p>
+                <p class="delivery-date" id="product-delivery-date">Estimated Delivery Date: 3-5 Business Days</p>
+                <button class="buy-button" id="buy-button">Buy Now</button>
+                <a href="home.html" class="back-link">Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Order Confirmation -->
+    <div id="buy-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-header">
+                <h2 class="modal-title">Order Confirmation</h2>
+            </div>
+            <div class="modal-body">
+                <p id="modal-product-title">Product: <span></span></p>
+                <p id="modal-product-price">Price: <span></span></p>
+                <p id="modal-delivery-charge">Delivery Charge: <span></span></p>
+                <p id="modal-total-amount">Total Amount: <span></span></p>
+                <p id="modal-delivery-date">Estimated Delivery Date: <span></span></p>
+            </div>
+            <div class="modal-footer">
+                <button id="confirm-button">Confirm Purchase</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Payment Options -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-header">
+                <h2 class="modal-title">Select Payment Method</h2>
+            </div>
+            <div class="modal-body">
+                <h3>Choose Payment Method:</h3>
+                <div class="payment-options">
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="cash" checked>
+                        <span>Cash on Delivery</span>
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="paytm">
+                        <span>Paytm</span>
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="gpay">
+                        <span>Google Pay</span>
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="card">
+                        <span>Credit/Debit Card</span>
+                    </label>
+                </div>
+                <div id="payment-fields" style="display: none;">
+                    <div id="paytm-fields" class="payment-field" style="display: none;">
+                        <label for="paytm-number">Paytm Number:</label>
+                        <input type="text" id="paytm-number" placeholder="Enter your Paytm number">
+                        <label for="paytm-transaction-id">Transaction ID:</label>
+                        <input type="text" id="paytm-transaction-id" placeholder="Enter Transaction ID">
+                        <label for="amount">Amount:</label>
+                        <input type="text" id="paytm-amount" value="299.99" readonly>
+                        <label for="pin-code">PIN Code:</label>
+                        <input type="text" id="paytm-pin-code" placeholder="Enter your PIN code">
+                    </div>
+                    <div id="gpay-fields" class="payment-field" style="display: none;">
+                        <label for="gpay-email">Google Pay Email:</label>
+                        <input type="email" id="gpay-email" placeholder="Enter your Google Pay email">
+                        <label for="gpay-transaction-id">Transaction ID:</label>
+                        <input type="text" id="gpay-transaction-id" placeholder="Enter Transaction ID">
+                        <label for="amount">Amount:</label>
+                        <input type="text" id="gpay-amount" value="299.99" readonly>
+                        <label for="pin-code">PIN Code:</label>
+                        <input type="text" id="gpay-pin-code" placeholder="Enter your PIN code">
+                    </div>
+                    <div id="card-fields" class="payment-field" style="display: none;">
+                        <label for="card-number">Card Number:</label>
+                        <input type="text" id="card-number" placeholder="Enter your card number">
+                        <label for="card-expiry">Expiry Date:</label>
+                        <input type="text" id="card-expiry" placeholder="MM/YY">
+                        <label for="card-cvc">CVC:</label>
+                        <input type="text" id="card-cvc" placeholder="Enter CVC">
+                        <label for="card-transaction-id">Transaction ID:</label>
+                        <input type="text" id="card-transaction-id" placeholder="Enter Transaction ID">
+                        <label for="amount">Amount:</label>
+                        <input type="text" id="card-amount" value="299.99" readonly>
+                        <label for="pin-code">PIN Code:</label>
+                        <input type="text" id="card-pin-code" placeholder="Enter your PIN code">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="pay-button">Pay</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 ShopSmart. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Retrieve product details from localStorage
+        const productDetails = JSON.parse(localStorage.getItem('productDetails'));
+    
+        if (productDetails) {
+            document.getElementById('product-title').innerText = productDetails.title;
+            document.getElementById('product-price').innerText = `$${productDetails.price}`;
+            document.getElementById('product-image').src = productDetails.image;
+    
+            // Show the modal on button click
+            document.getElementById('buy-button').addEventListener('click', () => {
+                document.getElementById('modal-product-title').querySelector('span').innerText = productDetails.title;
+                document.getElementById('modal-product-price').querySelector('span').innerText = `$${productDetails.price}`;
+                document.getElementById('modal-delivery-charge').querySelector('span').innerText = `$5.00`;
+                document.getElementById('modal-total-amount').querySelector('span').innerText = `$${(parseFloat(productDetails.price) + 5.00).toFixed(2)}`;
+                document.getElementById('modal-delivery-date').querySelector('span').innerText = "3-5 Business Days";
+                document.getElementById('buy-modal').style.display = 'block';
+            });
+    
+            // Confirm purchase and show payment modal
+            document.getElementById('confirm-button').addEventListener('click', () => {
+                document.getElementById('buy-modal').style.display = 'none';
+                document.getElementById('payment-modal').style.display = 'block';
+            });
+    
+            // Handle payment method selection
+            const paymentOptions = document.querySelectorAll('input[name="payment"]');
+            paymentOptions.forEach(option => {
+                option.addEventListener('change', () => {
+                    const paymentFields = document.getElementById('payment-fields');
+                    const paytmFields = document.getElementById('paytm-fields');
+                    const gpayFields = document.getElementById('gpay-fields');
+                    const cardFields = document.getElementById('card-fields');
+    
+                    paytmFields.style.display = option.value === 'paytm' ? 'block' : 'none';
+                    gpayFields.style.display = option.value === 'gpay' ? 'block' : 'none';
+                    cardFields.style.display = option.value === 'card' ? 'block' : 'none';
+    
+                    paymentFields.style.display = option.value === 'cash' ? 'none' : 'block';
+                });
+            });
+    
+            // Handle payment button click
+            document.getElementById('pay-button').addEventListener('click', () => {
+                const paymentMethod = document.querySelector('input[name="payment"]:checked');
+                if (paymentMethod) {
+                    const orderDetails = {
+                        title: productDetails.title,
+                        price: parseFloat(productDetails.price.replace('$', '')),
+                        deliveryCharge: 5.00,
+                        totalAmount: parseFloat(productDetails.price.replace('$', '')) + 5.00,
+                        image: productDetails.image,
+                        deliveryDate: "3-5 Business Days",
+                        paymentMethod: paymentMethod.value,
+                        amount: paymentMethod.value === 'cash' ? '0.00' : document.getElementById(paymentMethod.value + '-amount').value,
+                        pinCode: paymentMethod.value === 'cash' ? '' : document.getElementById(paymentMethod.value + '-pin-code').value
+                    };
+    
+                    // Add specific fields for each payment method
+                    if (paymentMethod.value === 'paytm') {
+                        orderDetails.paytmNumber = document.getElementById('paytm-number').value;
+                        orderDetails.paytmTransactionId = document.getElementById('paytm-transaction-id').value;
+                    } else if (paymentMethod.value === 'gpay') {
+                        orderDetails.gpayEmail = document.getElementById('gpay-email').value;
+                        orderDetails.gpayTransactionId = document.getElementById('gpay-transaction-id').value;
+                    } else if (paymentMethod.value === 'card') {
+                        orderDetails.cardNumber = document.getElementById('card-number').value;
+                        orderDetails.cardExpiry = document.getElementById('card-expiry').value;
+                        orderDetails.cardCVC = document.getElementById('card-cvc').value;
+                        orderDetails.cardTransactionId = document.getElementById('card-transaction-id').value;
+                    }
+    
+                    // Retrieve existing orders from localStorage or initialize an empty array
+                    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+                    orders.push(orderDetails); // Add the new order to the array
+    
+                    localStorage.setItem('orders', JSON.stringify(orders)); // Save back to localStorage
+    
+                    alert(`Order confirmed! Payment Method: ${orderDetails.paymentMethod}`);
+                    window.location.href = 'order.html'; // Redirect to order page
+                } else {
+                    alert('Please select a payment method.');
+                }
+            });
+    
+        } else {
+            alert("No product details available.");
+        }
+    </script>
+    
+</body>
+
+
+</html>

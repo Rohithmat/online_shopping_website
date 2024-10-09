@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Reviews and Information</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #007bff, #00c6ff);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+            padding: 20px; /* Padding for overall body */
+        }
+
+        h1 {
+            margin: 20px 0;
+            text-align: center;
+            font-size: 2.5em;
+            color: #fff;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px; /* Maximum width for better readability */
+            margin: 20px auto; /* Centering the container */
+            text-align: left; /* Left-aligning text for better readability */
+        }
+
+        .review-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin: 15px 0; /* Margin for spacing */
+            display: flex;
+            align-items: center; /* Center items vertically */
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .review-card:hover {
+            transform: translateY(-2px); /* Slight lift on hover */
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px; /* Space between avatar and text */
+            object-fit: cover;
+            border: 2px solid #007bff; /* Blue border for avatar */
+        }
+
+        .rating {
+            font-size: 22px;
+            color: #ffb700;
+            margin-bottom: 5px;
+        }
+
+        .review-text {
+            font-size: 16px;
+            margin-top: 10px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .user-name {
+            font-weight: bold;
+            margin-top: 5px;
+            font-size: 18px;
+            color: #007bff;
+        }
+
+        .review-date {
+            font-size: 14px;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .info-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .info-title {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #007bff;
+            text-align: center; /* Centering the title */
+        }
+
+        .info-text {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .review-card {
+                flex-direction: column; /* Stack items on smaller screens */
+                align-items: flex-start; /* Align items to start */
+            }
+
+            .avatar {
+                margin-bottom: 10px; /* Space below avatar on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>User Reviews</h1>
+    <div class="container">
+        <div class="review-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxqx0bfkc5-wFP1R7V6bfCEyoRT8Uh3zw6IYG3IzNegX3BAJa0LXBkLXKQuLGqZirzJag&usqp=CAU" alt="User Avatar" class="avatar">
+            <div>
+                <div class="rating">★★★★★</div>
+                <div class="user-name">John Doe</div>
+                <div class="review-text">"Amazing product! Exceeded my expectations and the quality is fantastic!"</div>
+                <div class="review-date">Reviewed on: October 1, 2024</div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <img src="https://img.freepik.com/free-photo/tender-woman-having-brow-color-added-her-eyebrows_231208-3536.jpg" alt="User Avatar" class="avatar">
+            <div>
+                <div class="rating">★★★★☆</div>
+                <div class="user-name">Jane Smith</div>
+                <div class="review-text">"Good value for the price. A few minor issues, but overall very satisfied."</div>
+                <div class="review-date">Reviewed on: September 28, 2024</div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTAUPUG0r--EDZzf-f9Afj_Jp7N96yIGsWPgCYIkrAS1rCJHIcdm_RCq_me44bJc0dvvY&usqp=CAU" alt="User Avatar" class="avatar">
+            <div>
+                <div class="rating">★★★★★</div>
+                <div class="user-name">Emily Johnson</div>
+                <div class="review-text">"Fantastic customer service and quick delivery! Will buy again!"</div>
+                <div class="review-date">Reviewed on: September 25, 2024</div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnS1o3mO3S_Nkfw1WAGaRJ6KaOGgODpfoOsA&s" alt="User Avatar" class="avatar">
+            <div>
+                <div class="rating">★★★☆☆</div>
+                <div class="user-name">Michael Brown</div>
+                <div class="review-text">"Decent product, but the color was not what I expected."</div>
+                <div class="review-date">Reviewed on: September 20, 2024</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <div class="info-title">About Our Website</div>
+        <div class="info-text">
+            Welcome to our platform where we connect users with high-quality products and services! Our mission is to provide a seamless shopping experience that ensures customer satisfaction and happiness. We prioritize user feedback and continuously strive to improve our offerings based on your reviews.
+            <br><br>
+            Thank you for being a valued customer. Your opinions matter, and we appreciate your support in helping us grow and enhance our services!
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Your Company Name
+    </footer>
+</body>
+</html>
