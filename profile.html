@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #00796b;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        header {
+            background-color: #000;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #4a90e2;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            display: flex; /* Use flexbox for layout */
+            align-items: flex-start; /* Align items at the start */
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .avatar {
+            width: 150px; /* Increased width */
+            height: 200px; /* Fixed height */
+            border-radius: 12px; /* Rounded corners */
+            margin-right: 20px; /* Space between image and details */
+            background: #ccc; /* Placeholder for profile picture */
+            border: 3px solid #4a90e2;
+            transition: transform 0.3s;
+        }
+        .avatar:hover {
+            transform: scale(1.05);
+        }
+        .details {
+            text-align: left; /* Align text to the left */
+            color: #333;
+        }
+        .user-info {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+        .user-info span {
+            font-weight: bold;
+            color: #00796b;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #4a90e2;
+            outline: none;
+        }
+        button {
+            padding: 12px 25px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #4a90e2;
+            color: white;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #357ab8;
+        }
+        .edit-button {
+            background-color: #e67e22;
+        }
+        .edit-button:hover {
+            background-color: #d86a1e;
+        }
+        .address-section {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Added shadow */
+        }
+        .footer {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #4a90e2;
+            border-radius: 8px;
+            animation: slideIn 0.5s ease;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="cart.html">Cart</a>
+        <a href="order.html">Order</a>
+        <a href="aboutus.html">About Us</a>
+    </nav>
+</header>
+
+<div class="container">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7AO5QoFLh_DRpDwdWFDkhdMnvNI6xsw3dbw&s" alt="Profile Picture" class="avatar">
+    <div class="details">
+        <h2>John Doe</h2>
+        <div class="user-info"><span>Email:</span> john.doe@example.com</div>
+        <div class="user-info"><span>Phone:</span> (123) 456-7890</div>
+        <div class="user-info"><span>Member Since:</span> January 2020</div>
+        <div class="user-info"><span>Date of Birth:</span> January 1, 1990</div>
+        <div class="user-info"><span>Shipping Preferences:</span> Standard Shipping</div>
+        
+        <div class="address-section">
+            <h3>Main Address</h3>
+            <div id="main-address">No address set.</div>
+            <input type="text" id="address-input" placeholder="Enter your address" />
+            <button id="confirm-button">Confirm Address</button>
+            <button id="edit-button" class="edit-button" style="display: none;">Edit Address</button>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <h3>Your Next Adventure Awaits!</h3>
+    <p>Discover amazing products tailored just for you. Stay tuned for exclusive deals and offers!</p>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const mainAddressDiv = document.getElementById('main-address');
+        const addressInput = document.getElementById('address-input');
+        const confirmButton = document.getElementById('confirm-button');
+        const editButton = document.getElementById('edit-button');
+
+        // Load address from local storage
+        const savedAddress = localStorage.getItem('mainAddress');
+        if (savedAddress) {
+            mainAddressDiv.textContent = savedAddress;
+            addressInput.style.display = 'none';
+            confirmButton.style.display = 'none';
+            editButton.style.display = 'inline-block';
+        }
+
+        // Confirm address button click
+        confirmButton.addEventListener('click', () => {
+            const newAddress = addressInput.value;
+            if (newAddress) {
+                localStorage.setItem('mainAddress', newAddress);
+                mainAddressDiv.textContent = newAddress;
+                addressInput.style.display = 'none';
+                confirmButton.style.display = 'none';
+                editButton.style.display = 'inline-block';
+            } else {
+                alert('Please enter an address.');
+            }
+        });
+
+        // Edit address button click
+        editButton.addEventListener('click', () => {
+            mainAddressDiv.textContent = 'No address set.';
+            addressInput.style.display = 'block';
+            confirmButton.style.display = 'inline-block';
+            editButton.style.display = 'none';
+            addressInput.value = '';
+        });
+    });
+</script>
+
+</body>
+</html>
